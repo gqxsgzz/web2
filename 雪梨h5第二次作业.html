@@ -11,6 +11,7 @@
             border: 5px 10px 5px 10px;
             border-color: rgb(133, 128, 128);
             width: 550px;
+            float: left;
         }
         #l1{
             height: 40px;
@@ -61,52 +62,41 @@
         <input type="button" id="l2" value="搜索" onclick="add()"/>
         <p id="p1">最近搜索</p>
         <div id="d2"></div>
-        <p id="p2" onclick="del()">X</p>
+        <input type="button" name="搜索" id="p2" value="X" onclick="del()">
     </div>
 </body>
 <script>
-    var d2 = document.getElementById('d2');
     var d3 = document.getElementById('d3');
     function add(){
-        var a = 0;
-        var t1 = new Date().getTime();
-        var t2 = l1.value;
         var t3 = document.createElement('div');
         var l1 = document.getElementById('l1');
+        var a = 0;
+        var t1 = new Date().getTime();
         t3.id = 'd3';
         for(var i=0;i<localStorage.length;++i){
-            if(t2 == localStorage.key(i)){
+            if(l1.value == localStorage.key(i)){
                 a = 1;
+                alert("您输入的商品以查询过");
             }
         }
         if(a == 0){
-            if(d2.children[0] ){
-                d2.appendChild(t3);
-    　　    }
-            else{
-                d2.insertBefore(t3,d2.children[0]);
-    　　    }
-            t3.innerHTML = t2;
-            localStorage.setItem(t2,t1);
+            d2.appendChild(t3);
+            t3.innerHTML = l1.value;
+            localStorage.setItem(l1.value,t1);
         }
     }
     window.onload = function(){
         for(var i=0;i<localStorage.length;++i){
             var t3 = document.createElement('div');
             t3.id = 'd3';
-            if(d2.children[0] ){
-    　　　　    d2.insertBefore(t3,d2.children[0]);
-    　　    }
-            else{
-    　　　　    d2.appendChild(t3);　　
-    　　    }
+    　　　　 d2.appendChild(t3);　　
             t3.innerHTML = localStorage.key(i);
         }
     }
     function del(){
         var d2 = document.getElementById('d2');
-        d2.innerHTML = "";
-        localStorage.clear();
-    }
+        localStorage.clear( )
+        document.getElementById("d2").innerHTML="";
+        } 
 </script>
 </html>
