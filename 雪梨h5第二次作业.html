@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        #d1{
+            border-style: solid;
+            border: 5px 10px 5px 10px;
+            border-color: rgb(133, 128, 128);
+            width: 550px;
+        }
+        #l1{
+            height: 40px;
+            width: 350px;
+            font-size: 13px;
+            color:  rgb(109, 107, 107);
+            margin-top: 15px;
+            margin-left: 15px;     
+        }
+        #l2{
+            height: 40px;
+            width: 120px;
+            font-size: 13px;
+            color: rgb(109, 107, 107);
+        }
+        #p1{
+            font-size: 17px;
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+        #p2{
+            color: rgb(222, 226, 228);
+            background-color:gray;
+            width: 20px;
+            height: 20px;
+            margin-left: 500px;
+            text-align: center;
+            float: left;
+        }
+        #d2{
+            width: 500px;
+            font-size: 20px;
+            color: black;
+            margin-left: 20px;
+            margin-bottom: 30px;
+            float: left;
+        }
+        #d3{
+            background-color: rgb(228, 222, 222);
+            margin-left: 10px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="d1">
+        <input type="text" id="l1" placeholder="请输入想查找的商品"/>
+        <input type="button" id="l2" value="搜索" onclick="add()"/>
+        <p id="p1">最近搜索</p>
+        <div id="d2"></div>
+        <p id="p2" onclick="del()">X</p>
+    </div>
+</body>
+<script>
+    var d2 = document.getElementById('d2');
+    var d3 = document.getElementById('d3');
+    function add(){
+        var a = 0;
+        var t1 = new Date().getTime();
+        var t2 = l1.value;
+        var t3 = document.createElement('div');
+        var l1 = document.getElementById('l1');
+        t3.id = 'd3';
+        for(var i=0;i<localStorage.length;++i){
+            if(t2 == localStorage.key(i)){
+                a = 1;
+            }
+        }
+        if(a == 0){
+            if(d2.children[0] ){
+                d2.appendChild(t3);
+    　　    }
+            else{
+                d2.insertBefore(t3,d2.children[0]);
+    　　    }
+            t3.innerHTML = t2;
+            localStorage.setItem(t2,t1);
+        }
+    }
+    window.onload = function(){
+        for(var i=0;i<localStorage.length;++i){
+            var t3 = document.createElement('div');
+            t3.id = 'd3';
+            if(d2.children[0] ){
+    　　　　    d2.insertBefore(t3,d2.children[0]);
+    　　    }
+            else{
+    　　　　    d2.appendChild(t3);　　
+    　　    }
+            t3.innerHTML = localStorage.key(i);
+        }
+    }
+    function del(){
+        var d2 = document.getElementById('d2');
+        d2.innerHTML = "";
+        localStorage.clear();
+    }
+</script>
+</html>
