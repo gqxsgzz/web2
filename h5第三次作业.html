@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>刮刮乐</title>
+    <style>
+        #div{
+            width: 400px;
+            height: 250px;
+            position: absolute;
+        }
+        #canvas{
+            position: absolute;
+            border: rgb(0, 0, 0) solid 2px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div"></div>
+    <canvas id="canvas" width="400px" height="250px"></canvas>
+    <h2>获得再来一份作业</h2>
+</body>
+<script>
+    var canvas = document.getElementById("canvas");
+    var ctext = canvas.getContext('2d');
+    ctext.beginPath();
+    ctext.fillStyle='blue';
+    ctext.fillRect(0,0,400,250);
+    canvas.onmousedown=function(){
+        canvas.onmousemove = function(){
+            ctext.globalCompositeOperation = "destination-out";
+            ctext.beginPath();
+            ctext.arc(event.clientX,event.clientY,40,0,Math.PI*2);
+            ctext.fill();
+            panduan();
+            }
+    }
+    function panduan(){
+        var imgData = ctext.getImageData(0, 0,400, 250);
+        var num = 0;
+        for(var i = 3; i < imgData.data.length; i += 4){
+            if(num >= 0.85*250*400){
+                ctext.clearRect(0, 0, 400, 250);
+            }
+            if(imgData.data[i] == 0){
+                num++;
+            }
+        }
+    }
+    canvas.onmouseup=function(){
+        canvas.onmousemove = function(){
+        }
+    } 
+</script>
