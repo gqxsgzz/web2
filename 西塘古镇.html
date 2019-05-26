@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css变形与动画</title>
+    <style>
+        .DIV{
+            width:420px;
+            height:470px;
+            border: 3px solid gainsboro;
+            position: relative;
+            overflow: hidden;
+            box-shadow:3px 3px 7px rgb(38, 133, 196);
+        }
+        .img{
+            width:420px;
+            height:270px;
+            background-size:cover;
+            background-image: url(xitang.jpg);
+            overflow: hidden;
+            transform: scale(1,1);
+            transition: transform 0.5s ease-in-out;
+        }
+        .shadow{
+            width:420px;
+            height:270px;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+        .yuan{
+            right:30px;
+            top:30px;
+            width:50px;
+            height:50px;
+            border-radius:25px;
+            background:rgba(13, 150, 155, 0.925);
+            color: white;
+            font-size: 15px;
+            text-align: center;
+            position: absolute;
+            z-index: 1;
+        }
+        .wid{
+            width:420px;
+            height:150px;
+            position: relative;
+            background:white;
+            float: left;
+            transform:translateY(0);
+            transition: transform 0.5s ease-in-out;
+        }
+        .DIV:hover .img{
+            transform: scale(1.2,1.2);
+            transition: transform 0.5s ease-in-out;
+
+        }
+        .DIV:hover .wid{
+            transform:translateY(-100px);
+            transition: transform 0.5s ease-in-out;
+        }
+        .DIV:hover .wid2{
+            opacity:1;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .DIV:hover .shadow{
+            background: rgb(0, 0, 0,0.4);
+        }
+        .icon{
+            width:50px;
+            height: 25px;
+            line-height: 25px;
+            position:absolute;
+            background:rgba(13, 150, 155, 0.925);
+            color: white;
+            left:0;
+            top:-25px;
+            text-align:center
+        }
+        .wid h2{
+            margin-left:25px;
+        }
+        .wid span{
+            margin-left:25px;
+            font-size:17px;
+            color: coral;
+            
+        }
+        .wid2{
+            margin-left:25px;
+            opacity:0;
+            line-height: 16px;
+            font-size: 14px;
+            color:gray;
+        }
+        .bottoms{
+            width:420px;
+            height:50px;
+            font-size:12px;
+            color: rgb(199, 197, 197);
+        }
+        .bottoms a{
+            margin-left:30px;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="DIV">
+        <div class="yuan">
+            <a>15</a>
+            <br/>
+            <a>5月</a>
+        </div>
+        <div class="img">
+        </div>
+        <div class="shadow"></div>
+        <div class="wid">
+            <div class="icon">照片</div>
+            <h2>西塘古镇</h2>
+            <span>国家AAAAA级旅游景区</span>
+            <br/>
+            <div class="wid2">
+                <a>西塘古镇属浙江省嘉兴市嘉善县，地处江浙沪三省市交界处,被国家文物局列入中国世界文化遗产预备名单,中国首批历史文化名镇,获世界遗产保护杰出成就奖。西塘历史悠久，是古代吴越文化的发祥地之一。</a>
+            </div>
+        </div>
+        <div class="bottoms">
+            <a>图片拍摄于2016年7月</a>
+        </div>
+    </div>
+</body>
+<script>
+</script>
+<ml>
