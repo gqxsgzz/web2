@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var sqls = [
+        window.matchMedia('(max-width:418px)'), //和CSS一样，也要注意顺序！
+        window.matchMedia('(max-width:768px)'),
+        window.matchMedia('(max-width:992px)'),
+        window.matchMedia('(max-width:1200px)')
+    ]
+
+    function mediaMatches() {
+        if(sqls[0].matches){
+            console.log('<=418'); //do something...
+        }else if(sqls[1].matches){
+            console.log('>418 & <=768'); // do something...
+        }else if(sqls[2].matches){
+            console.log('>768 & <=992'); // do something...
+        }else if(sqls[3].matches){
+            console.log('> 992 & <=1200'); // do something...
+        }else {
+            console.log('>1200');
+        }
+    }
+    mediaMatches(); //页面首次加载
+
+    for(var i = 0; i < sqls.length; i++){
+        sqls[i].addListener(mediaMatches);
+    }
+</script>
+</html>
