@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            width: 800px;
+            height: 500px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+        li {
+            margin: 0 auto;
+            width: 40px;
+            height: 40px;
+            float: left;
+            margin-left: 20px;
+            list-style: none;
+            border: 1px solid black;
+        }
+        .legend{
+            color: red;
+            font-size: 40px;
+        }
+        .div {
+            border: 1px solid black;
+            margin-top: 30px;
+            font-size: 22px;
+            float: left;
+        }
+        .div0 {
+            margin-top: 40px;
+            height: 80px;
+        }
+        .gray{
+            background-color: gray;
+        }
+        .blueviolet{
+            background-color: blueviolet;
+        }
+        .red{
+            background-color: red;
+        }
+        .blue{
+            background-color: blue;
+        }
+        .orange{
+            background-color: orange;
+        }
+        .paleturquoise{
+            background-color: paleturquoise;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend class="legend">页面换肤</legend>
+        <ul id="div0">
+            <li class="gray" id="gray" title="灰色"></li>
+            <li class="blueviolet" id="blueviolet" title="紫色"></li>
+            <li class="red" id="red" title="红色"></li>
+            <li class="blue" id="blue" title="天蓝色"></li>
+            <li class="orange" id="orange" title="橙色"></li>
+            <li class="paleturquoise" id="paleturquoise" title="绿色"></li>
+        </ul>
+        <div id="div" class="div">
+            LocalStorage将数据保存在客户端本地的硬件设备中，即使浏览器被关闭了，该数据依然存在，下次打开浏览器访问网址是任然可以继续使用。
+        </div>
+    </fieldset>
+</body>
+<script>
+    
+    var div = document.getElementById("div");
+    var gray = document.getElementById("gray");
+    var blueviolet = document.getElementById("blueviolet");
+    var red = document.getElementById("red");
+    var blue = document.getElementById("blue");
+    var orange = document.getElementById("orange");
+    var paleturquoise = document.getElementById("paleturquoise");
+    var colorvalue = window.localStorage.getItem("localColor"); 
+    if (colorvalue) {
+        div.style.backgroundColor = colorvalue; 
+    }
+    var li = document.getElementsByTagName("li");
+    for (var i = 0; i < li.length; i++) {
+        if (li[i].id == localStorage.getItem("localColor")) {
+            li[i].style.marginTop = "-16px";
+        }
+    }
+    for (var i = 0; i < li.length; i++) {
+        li[i].onclick = function() {
+            var a =confirm("您群定要更改网页皮肤颜色为" + this.id);
+            if(a==true){
+            var color = this.id;
+            window.localStorage.setItem('localColor', color); 
+            var color0 = window.localStorage.getItem("localColor"); 
+            div.style.backgroundColor = color0; 
+            for (j = 0; j < li.length; j++) {
+            li[j].style.marginTop = "0px";
+            }
+            this.style.marginTop = "-16px";
+            }
+        }
+    }
+</script>
+</html>
